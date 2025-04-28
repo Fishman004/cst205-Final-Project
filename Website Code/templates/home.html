@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+
+    <title>Homepage</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Photo Editor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/test">Test Page</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="jumbotron bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Welcome to Photo Editor</h1>
+            <p class="lead">Your one-stop solution for editing and enhancing your images.</p>
+            <a href="/test" class="btn btn-light btn-lg">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About This Website</h2>
+                <p>This photo editing website provides powerful tools to manipulate, enhance, and organize your images effortlessly.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Features</h2>
+                <ul>
+                    <li>Edit photos online easily</li>
+                    <li>Apply filters and effects</li>
+                    <li>Crop, resize, and adjust brightness</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3">
+        <p>&copy; 2025 Photo Editor. All rights reserved.</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+</body>
+</html>
