@@ -68,12 +68,17 @@ def main():
     def apipage():
         random_id = rando()
 
+        # if user clicked "yes, use this image" then sendd the id that 
+        # was generated to the edit home page so the same image can be 
+        # retrieved
         if request.method == "POST":
             random_id = request.form['random_id']
             return redirect(url_for("editHome", random_id=random_id))
 
         return render_template("apipage.html", random_id=random_id)
     
+    # route - editHome
+    # home page for editing options
     @app.route('/editHome')
     def editHome():
         random_id = request.args.get('random_id')
