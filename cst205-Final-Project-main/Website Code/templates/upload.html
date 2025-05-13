@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     <!-- Bootstrap CSS -->
-     {{ bootstrap.load_css() }}
-
-    <title>API Page</title>
+    <title>Upload Image</title>
+    {{ bootstrap.load_css() }}
 </head>
 <body>
-    <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Photo Editor</a>
@@ -32,33 +26,13 @@
             </div>
         </div>
     </nav>
-
-    <br> <br>
-
-    <div id="api_div" class="text-center">
-        <h3>Would you like to use this image?</h3>
-        <br>
-        <img src="https://picsum.photos/id/{{random_id}}/800/600">
-        <br>
-        <br>
-        <form action="/apipage" method="POST">
-            <input type="hidden" name="random_id" value="{{random_id}}"> 
-            <input class="btn btn-light btn-lg" type="submit" value="Yes, use this image">
+    <div class="container mt-5 text-center">
+        <h2>Select an Image to Upload</h2>
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            <input type="file" name="file" accept="image/*" class="form-control mb-3" required>
+            <button type="submit" class="btn btn-success">Upload</button>
         </form>
-        <br> <br>
-        <a href="/apipage" class="btn btn-light btn-lg">No, give me a new image</a>
-        <br> <br>
     </div>
-        
-
-
-
-    <!-- Footer -->
-    <footer class="bg-light text-center py-3">
-        <p>&copy; 2025 Photo Editor. All rights reserved.</p>
-    </footer>
-
-    <!-- Optional JavaScript -->
     {{ bootstrap.load_js() }}
 </body>
 </html>
