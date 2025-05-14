@@ -11,52 +11,29 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Photo Editor</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Upload">Upload Image</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/apipage">API Image</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include "header.html" %}
 
     <br> <br>
 
     <div id="api_div" class="text-center">
-        <h3>Would you like to use this image?</h3>
+        <img src="/static/buttons/use this image.jpg" alt="Would you like to use this image?">
         <br>
         <img src="https://picsum.photos/id/{{random_id}}/800/600">
         <br>
         <br>
         <form action="/apipage" method="POST">
-            <input type="hidden" name="random_id" value="{{random_id}}"> 
-            <input class="btn btn-light btn-lg" type="submit" value="Yes, use this image">
+            <input type="hidden" name="random_id" value="{{random_id}}">
+            <input class="btn btn-light btn-lg" type="image" src="/static/buttons/yes! (go to edit page).jpg" alt="Yes, use this image">
         </form>
         <br> <br>
-        <a href="/apipage" class="btn btn-light btn-lg">No, give me a new image</a>
+        <a href="/apipage">
+            <img class="btn btn-light btn-lg" src="/static/buttons/no! (get new image).jpg" alt="No, give me a new image">
+        </a>
         <br> <br>
     </div>
-        
-
-
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-3">
-        <p>&copy; 2025 Photo Editor. All rights reserved.</p>
-    </footer>
+    {% include "footer.html" %}
 
     <!-- Optional JavaScript -->
     {{ bootstrap.load_js() }}
