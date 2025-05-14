@@ -58,7 +58,7 @@ def main():
     def home():
 
         # render a basic HTML template for the home page
-        return render_template("home.html")
+        return render_template("home.html", title="Home Page")
 
     # route - upload
     # opens page for uploading local image
@@ -79,7 +79,7 @@ def main():
 
                 return redirect(url_for('editHome', filename=filename, uploaded="true"))
 
-        return render_template("upload.html")
+        return render_template("upload.html", title="Upload an Image to Edit")
     # route - api
     # opens page for selecting api image
     @app.route('/apipage', methods=('GET', 'POST'))
@@ -97,7 +97,7 @@ def main():
 
             return redirect(url_for("editHome", filename=filename, downloaded = "true"))
 
-        return render_template("apipage.html", random_id=random_id)
+        return render_template("apipage.html", random_id=random_id, title="Generate an Image to Edit using a Random API Image Generator")
     # route - edit
     # opens page for editing image
     @app.route('/editHome', methods=['GET', 'POST'])
@@ -126,7 +126,7 @@ def main():
                 return render_template("editHome.html", image_path=f"edited/{filename}", edited=True, downloaded=False)
 
 
-        return render_template("editHome.html", image_path=f"uploads/{filename}" if filename else None, downloaded = downloaded, edited = False, uploaded=uploaded)
+        return render_template("editHome.html", image_path=f"uploads/{filename}" if filename else None, downloaded = downloaded, edited = False, uploaded=uploaded, title="Choose the Edits to make to your Image")
 
 
 
