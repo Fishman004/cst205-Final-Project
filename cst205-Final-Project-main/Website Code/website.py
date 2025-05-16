@@ -40,10 +40,33 @@ import random
 import shutil
 import os
 
+import cv2
+import numpy as np
+
 
 """
 functions
 """
+
+def apply_grayscale_filter_cv(image):
+    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+def apply_invert_colors_filter(image):
+    return cv2.bitwise_not(image)
+
+def apply_warm_filter(image):
+    increase_lookup_table = np.array([min(i+30, 255) for i in range(256)]).astype("uint8")
+    b, g, r = cv2.split(image)
+    r = cv2.LUT(r, increase_lookup_table)
+    return cv2.merge((b, g, r))
+
+def apply_cool_filter(image):
+    decrease_lookup_table = np.array([max(i-30, 0) for i in range(256)]).astype("uint8")
+    b, g, r = cv2.split(image)
+    b = cv2.LUT(b, decrease_lookup_table)
+    return cv2.merge((b, g, r))
+
+
 # main program
 def main():
 
@@ -120,16 +143,47 @@ def main():
 
         if request.method == 'POST':
             action = request.form.get('action')
-            width = int(request.form.get('width', 0))
-            height = int(request.form.get('height', 0))
+            width = request.form.get('width')
+            height = request.form.get('height')
+
+            width = int(width) if width and width.isdigit() else 0
+            height = int(height) if height and height.isdigit() else 0
+            
 
             if image_path and os.path.exists(image_path):
                 img = Image.open(image_path)
-
+            
                 if action == 'resize' and width > 0 and height > 0:
                     img = img.resize((width, height))
                 elif action == 'crop':
                     img = img.crop((0, 0, width, height))
+                elif action == 'filter':
+                    filter_type = request.form.get('filter')
+
+                    original_path = os.path.join('static/uploads', filename)
+                    edited_path = os.path.join('static/edited', filename)
+
+                    if filter_type == 'grayscale':
+                        image_cv = cv2.imread(original_path)
+                        image_cv = apply_grayscale_filter_cv(image_cv)
+                    elif filter_type == 'invert':
+                        image_cv = cv2.imread(original_path)
+                        image_cv = apply_invert_colors_filter(image_cv)
+                    elif filter_type == 'warm':
+                        image_cv = cv2.imread(original_path)
+                        image_cv = apply_warm_filter(image_cv)
+                    elif filter_type == 'cool':
+                        image_cv = cv2.imread(original_path)
+                        image_cv = apply_cool_filter(image_cv)
+                    else:
+                        shutil.copyfile(original_path, edited_path)
+                        return render_template("editHome.html", image_path=f"edited/{filename}", edited=True, downloaded=False)
+                    if len(image_cv.shape) == 2:
+                        cv2.imwrite(edited_path, image_cv)
+                    else:
+                        cv2.imwrite(edited_path, cv2.cvtColor(image_cv, cv2.COLOR_BGR2RGB))
+
+                    return render_template("editHome.html", image_path=f"edited/{filename}", edited=True, downloaded=False)
 
                 edited_path = os.path.join('static/edited', filename)
                 img.save(edited_path)
