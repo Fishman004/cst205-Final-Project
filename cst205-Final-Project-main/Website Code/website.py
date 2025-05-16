@@ -1,8 +1,19 @@
 """
-~ Name: x
-~ Class: x
-~ Date: x
-~ Description:  x
+~ Names: Sam Mier, James Fisher, Thomas Nigro, Luis Cedillo 
+~ Class: CST 205: Python Multimedia Programming
+~ Date: 5/15/25
+~ Description: Photo Editing App allows users to upload an image from their local computer, or use a randomly generated API image from PicSum.
+               Then, they can choose to edit with cropping, resizing, or filters. This will download the final edit to their local computer.
+~ Contributions:
+                -James: Image upload/download/cropping.
+                -Sam: API integration
+                -Thomas: Website design and custom graphics
+                -Luis: Filter edits
+
+~Important Code Blocks:
+                        -Upload Route: Allows users to upload image from local. Saves image to uploads folder. Redirects to Edit
+                        -Api Route: Randomly selects image ID. Downloads image to uploads folder. Can reroll image or continue to redirect to Edit.
+                        -Edit Route: Has both get and post, takes image path from uploads and allows for application of filters or resizing/cropping. Saves to Edited folder. Displays feedback messages.
 """
 
 
