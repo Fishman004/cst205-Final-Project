@@ -6,7 +6,7 @@ Class: cst205 - Multimedia Design and Programming
 
 Date of Completion: 5 - 16 - 25
 
-How to run program: With virtual environment activated inside Website Code directory, simply run the main file, website.py, as you would any python application we have created in this class, using the command "python website.py". This will result in a flask HTTPS address for you to plug into your browser for use of the full project. Required pip installations are PIL, requests, flask, and flask_bootstrap.
+How to run program: With virtual environment activated inside Website Code directory, simply run the main file, website.py, as you would any python application we have created in this class, using the command "python website.py". This will result in a flask HTTPS address for you to plug into your browser for use of the full project. Required pip installations are PIL, requests, flask, flask_bootstrap, and opencv-python.
 
 
 GitHub Repository: https://github.com/Fishman004/cst205-Final-Project
